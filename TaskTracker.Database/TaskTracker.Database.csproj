@@ -8,13 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Scripts\test_CreateUsersTable.sql" />
-    <None Remove="Scripts\test_DropUsersTable.sql" />
+    <None Remove="Scripts\001_CreateUsersTable.sql" />
+    <None Remove="Scripts\002_CreateBoardsTable.sql" />
+    <None Remove="Scripts\003_CreateBoardMembersTable.sql" />
+    <None Remove="Scripts\004_CreateTaskListsTable.sql" />
+    <None Remove="Scripts\005_CreateTasksTable.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Scripts\test_CreateUsersTable.sql" />
-    <EmbeddedResource Include="Scripts\test_DropUsersTable.sql" />
+    <EmbeddedResource Include="Scripts\001_CreateUsersTable.sql" />
+    <EmbeddedResource Include="Scripts\002_CreateBoardsTable.sql" />
+    <EmbeddedResource Include="Scripts\003_CreateBoardMembersTable.sql" />
+    <EmbeddedResource Include="Scripts\004_CreateTaskListsTable.sql" />
+    <EmbeddedResource Include="Scripts\005_CreateTasksTable.sql" />
   </ItemGroup>
 
   <ItemGroup>

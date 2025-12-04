@@ -8,7 +8,7 @@ using DbUp;
 
 
 var connectionString = args.FirstOrDefault()
-    ?? "Server=ALINA\\TEW_SQLEXPRESS;Database=TaskTrackerDb;Trusted_Connection=true;TrustServerCertificate=true;";
+    ?? "Server=ALINA\\TEW_SQLEXPRESS;Database=TaskTrackerDatabase;Trusted_Connection=true;TrustServerCertificate=true;";
 
 
 
