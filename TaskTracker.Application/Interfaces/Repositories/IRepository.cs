@@ -29,7 +29,7 @@ namespace TaskTracker.Application.Interfaces.Repositories
 
 
 
-        // Existence check
+        // Existence_check
         Task<bool> ExistsAsync(TId id, CancellationToken cancellationToken = default);
         Task<int> CountAsync(CancellationToken cancellationToken = default);
     }
