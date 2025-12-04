@@ -20,6 +20,10 @@
     <None Remove="Scripts\010_CreateSubscriptionsTable.sql" />
     <None Remove="Scripts\011_CreateChatSessionsTable.sql" />
     <None Remove="Scripts\012_CreateChatMessagesTable.sql" />
+    <None Remove="Scripts\013_Create CallSessionsTable.sql" />
+    <None Remove="Scripts\014_CreateChecklistsTable.sql" />
+    <None Remove="Scripts\015_CreateChecklistItemsTable.sql" />
+    <None Remove="Scripts\016_CreateActivitiesTable.sql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +39,10 @@
     <EmbeddedResource Include="Scripts\010_CreateSubscriptionsTable.sql" />
     <EmbeddedResource Include="Scripts\011_CreateChatSessionsTable.sql" />
     <EmbeddedResource Include="Scripts\012_CreateChatMessagesTable.sql" />
+    <EmbeddedResource Include="Scripts\013_Create CallSessionsTable.sql" />
+    <EmbeddedResource Include="Scripts\014_CreateChecklistsTable.sql" />
+    <EmbeddedResource Include="Scripts\015_CreateChecklistItemsTable.sql" />
+    <EmbeddedResource Include="Scripts\016_CreateActivitiesTable.sql" />
   </ItemGroup>
 
   <ItemGroup>
