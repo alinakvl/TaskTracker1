@@ -22,7 +22,7 @@ var upgrader = DeployChanges.To
     .LogToConsole()
     .Build();
 
-// Running migrations
+// Running migrat
 var result = upgrader.PerformUpgrade();
 
 if (!result.Successful)
