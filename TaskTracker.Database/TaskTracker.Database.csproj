@@ -13,6 +13,13 @@
     <None Remove="Scripts\003_CreateBoardMembersTable.sql" />
     <None Remove="Scripts\004_CreateTaskListsTable.sql" />
     <None Remove="Scripts\005_CreateTasksTable.sql" />
+    <None Remove="Scripts\006_CreateLabelsTable.sql" />
+    <None Remove="Scripts\007_CreateTaskLabelsTable.sql" />
+    <None Remove="Scripts\008_CreateCommentsTable.sql" />
+    <None Remove="Scripts\009_CreateAttachmentsTable.sql" />
+    <None Remove="Scripts\010_CreateSubscriptionsTable.sql" />
+    <None Remove="Scripts\011_CreateChatSessionsTable.sql" />
+    <None Remove="Scripts\012_CreateChatMessagesTable.sql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +28,13 @@
     <EmbeddedResource Include="Scripts\003_CreateBoardMembersTable.sql" />
     <EmbeddedResource Include="Scripts\004_CreateTaskListsTable.sql" />
     <EmbeddedResource Include="Scripts\005_CreateTasksTable.sql" />
+    <EmbeddedResource Include="Scripts\006_CreateLabelsTable.sql" />
+    <EmbeddedResource Include="Scripts\007_CreateTaskLabelsTable.sql" />
+    <EmbeddedResource Include="Scripts\008_CreateCommentsTable.sql" />
+    <EmbeddedResource Include="Scripts\009_CreateAttachmentsTable.sql" />
+    <EmbeddedResource Include="Scripts\010_CreateSubscriptionsTable.sql" />
+    <EmbeddedResource Include="Scripts\011_CreateChatSessionsTable.sql" />
+    <EmbeddedResource Include="Scripts\012_CreateChatMessagesTable.sql" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,16 @@
+﻿CREATE TABLE Subscriptions (
+    Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    UserId UNIQUEIDENTIFIER NOT NULL,
+    PlanType NVARCHAR(50) NOT NULL,
+    StripeCustomerId NVARCHAR(255) NULL,
+    StripeSubscriptionId NVARCHAR(255) NULL,
+    StartDate DATETIME2 NOT NULL,
+    EndDate DATETIME2 NULL,
+    Status NVARCHAR(50) NOT NULL DEFAULT 'Active',
+    
+    CreatedAt DATETIME2 NOT NULL DEFAULT GETUTCDATE(),
+    UpdatedAt DATETIME2 NOT NULL DEFAULT GETUTCDATE(),
+    
+    CONSTRAINT FK_Subscriptions_User FOREIGN KEY (UserId) REFERENCES Users(Id) ON DELETE CASCADE
+);
+CREATE UNIQUE INDEX IX_Subscriptions_StripeCustomerId ON Subscriptions(StripeCustomerId) WHERE StripeCustomerId IS NOT NULL;
