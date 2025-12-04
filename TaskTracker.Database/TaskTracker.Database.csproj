@@ -8,14 +8,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Scripts\test_CreateUsersTable.sql" />
+    <None Remove="Scripts\test_DropUsersTable.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\test_CreateUsersTable.sql" />
+    <EmbeddedResource Include="Scripts\test_DropUsersTable.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="dbup" Version="5.0.37" />
     <PackageReference Include="dbup-sqlserver" Version="5.0.39" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Scripts\" />
   </ItemGroup>
 
 </Project>
