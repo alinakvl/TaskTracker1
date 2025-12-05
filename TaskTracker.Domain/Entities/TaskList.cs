@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TaskTracker.Domain.Entities
+﻿namespace TaskTracker.Domain.Entities;
+public class TaskList : BaseEntity
 {
-    internal class TaskList
-    {
-    }
+    public Guid BoardId { get; set; }
+    public string Title { get; set; } = string.Empty;
+    public int Position { get; set; }
+
+    public Board Board { get; set; } = null!;
+    public ICollection<Task> Tasks { get; set; } = new List<Task>();
 }
+
+

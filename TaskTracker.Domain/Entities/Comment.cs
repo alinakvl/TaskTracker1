@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace TaskTracker.Domain.Entities;
 
-namespace TaskTracker.Domain.Entities
+
+public class Comment : BaseEntity
 {
-    internal class Comment
-    {
-    }
+    public Guid TaskId { get; set; }
+    public Guid UserId { get; set; }
+    public string Content { get; set; } = string.Empty;
+
+    public Task Task { get; set; } = null!;
+    public User User { get; set; } = null!;
 }

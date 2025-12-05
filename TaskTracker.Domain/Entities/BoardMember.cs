@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TaskTracker.Domain.Entities
+﻿namespace TaskTracker.Domain.Entities;
+public class BoardMember
 {
-    internal class BoardMember
-    {
-    }
+    public Guid Id { get; set; }
+    public Guid BoardId { get; set; }
+    public Guid UserId { get; set; }
+    public int Role { get; set; } = 3; // 1-Owner, 2-Admin, 3-Member
+    public DateTime JoinedAt { get; set; }
+
+   
+    public Board Board { get; set; } = null!;
+    public User User { get; set; } = null!;
 }
