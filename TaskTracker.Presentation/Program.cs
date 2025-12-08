@@ -82,6 +82,7 @@ using TaskTracker.Persistence.UnitOfWork;
 using AutoMapper;
 using TaskTracker.Presentation.Middleware;
 
+using TaskTracker.Database;
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -99,6 +100,7 @@ builder.Services.AddDbContext<TaskTrackerDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection"),
         b => b.MigrationsAssembly("TaskTracker.Persistence")));
 
+builder.Services.AddTransient<DatabaseInitializer>();
 
 // Repositories & Unit of Work
 
@@ -225,6 +227,12 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var initializer = scope.ServiceProvider.GetRequiredService<DatabaseInitializer>();
+    
+    initializer.Initialize();
+}
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 
