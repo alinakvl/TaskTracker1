@@ -6,7 +6,7 @@ using TaskTracker.Domain.DTOs.Boards;
 
 namespace TaskTracker.Application.Handlers.QueryHandlers;
 
-public class GetAllBoardsQueryHandler : IRequestHandler<GetAllBoardsQuery, IEnumerable<BoardDto>>
+internal class GetAllBoardsQueryHandler : IRequestHandler<GetAllBoardsQuery, IEnumerable<BoardDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;

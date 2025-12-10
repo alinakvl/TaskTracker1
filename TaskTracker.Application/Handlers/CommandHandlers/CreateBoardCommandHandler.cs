@@ -8,13 +8,13 @@ using Microsoft.AspNetCore.Http;
 
 namespace TaskTracker.Application.Handlers.CommandHandlers;
 
-public class CreateBoardCommandHandler : IRequestHandler<CreateBoardCommand, BoardDto>
+internal class CreateBoardCommandHandler : IRequestHandler<CreateBoardCommand, BoardDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public CreateBoardCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+     public CreateBoardCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;

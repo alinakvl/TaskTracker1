@@ -6,7 +6,7 @@ using TaskTracker.Domain.DTOs.Tasks;
 
 namespace TaskTracker.Application.Handlers.QueryHandlers;
 
-public class GetTasksByListQueryHandler : IRequestHandler<GetTasksByListQuery, IEnumerable<TaskDto>>
+internal class GetTasksByListQueryHandler : IRequestHandler<GetTasksByListQuery, IEnumerable<TaskDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;

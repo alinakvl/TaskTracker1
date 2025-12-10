@@ -4,7 +4,7 @@ using TaskTracker.Application.Interfaces.Repositories;
 
 namespace TaskTracker.Application.Handlers.CommandHandlers;
 
-public class ArchiveBoardCommandHandler : IRequestHandler<ArchiveBoardCommand, bool>
+ internal class ArchiveBoardCommandHandler : IRequestHandler<ArchiveBoardCommand, bool>
 {
     private readonly IUnitOfWork _unitOfWork;
 

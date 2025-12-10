@@ -4,7 +4,7 @@ using TaskTracker.Application.Interfaces.Repositories;
 
 namespace TaskTracker.Application.Handlers.CommandHandlers;
 
-public class DeleteTaskCommandHandler : IRequestHandler<DeleteTaskCommand, bool>
+internal class DeleteTaskCommandHandler : IRequestHandler<DeleteTaskCommand, bool>
 {
     private readonly IUnitOfWork _unitOfWork;
 

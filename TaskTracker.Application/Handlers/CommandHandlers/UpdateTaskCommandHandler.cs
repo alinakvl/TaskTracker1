@@ -6,7 +6,7 @@ using TaskTracker.Domain.DTOs.Tasks;
 
 namespace TaskTracker.Application.Handlers.CommandHandlers;
 
-public class UpdateTaskCommandHandler : IRequestHandler<UpdateTaskCommand, TaskDto>
+internal class UpdateTaskCommandHandler : IRequestHandler<UpdateTaskCommand, TaskDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;

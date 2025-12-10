@@ -6,7 +6,7 @@ using TaskTracker.Domain.DTOs.Boards;
 
 namespace TaskTracker.Application.Handlers.CommandHandlers;
 
-public class UpdateBoardCommandHandler : IRequestHandler<UpdateBoardCommand, BoardDto>
+internal class UpdateBoardCommandHandler : IRequestHandler<UpdateBoardCommand, BoardDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;

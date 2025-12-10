@@ -4,7 +4,7 @@ using TaskTracker.Application.Interfaces.Repositories;
 
 namespace TaskTracker.Application.Handlers.CommandHandlers;
 
-public class DeleteBoardCommandHandler : IRequestHandler<DeleteBoardCommand, bool>
+internal class DeleteBoardCommandHandler : IRequestHandler<DeleteBoardCommand, bool>
 {
     private readonly IUnitOfWork _unitOfWork;
 
