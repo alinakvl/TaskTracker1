@@ -1,4 +1,8 @@
-﻿namespace TaskTracker.Application.Interfaces.Repositories;
+﻿using TaskTracker.Domain.Entities;
+using Task = System.Threading.Tasks.Task;
+
+namespace TaskTracker.Application.Interfaces.Repositories;
+
 
 public interface IUnitOfWork : IDisposable
 {
@@ -8,12 +12,12 @@ public interface IUnitOfWork : IDisposable
     IUserRepository Users { get; }
 
     //generic repo
-    IRepository<Domain.Entities.TaskList, Guid> TaskLists { get; }
-    IRepository<Domain.Entities.Comment, Guid> Comments { get; }
-    IRepository<Domain.Entities.Attachment, Guid> Attachments { get; }
-    IRepository<Domain.Entities.Label, Guid> Labels { get; }
-    IRepository<Domain.Entities.BoardMember, Guid> BoardMembers { get; }
-    IRepository<Domain.Entities.Activity, Guid> Activities { get; }
+    IRepository<TaskList, Guid> TaskLists { get; }
+    IRepository<Comment, Guid> Comments { get; }
+    IRepository<Attachment, Guid> Attachments { get; }
+    IRepository<Label, Guid> Labels { get; }
+    IRepository<BoardMember, Guid> BoardMembers { get; }
+    IRepository<Activity, Guid> Activities { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

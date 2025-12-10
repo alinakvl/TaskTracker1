@@ -1,14 +1,17 @@
-﻿namespace TaskTracker.Application.Interfaces.Repositories;
+﻿using System.Linq.Expressions;
+
+namespace TaskTracker.Application.Interfaces.Repositories;
+
 public interface IRepository<TEntity, TId> where TEntity : class
 {
     // Read operations
     Task<TEntity?> GetByIdAsync(TId id, CancellationToken cancellationToken = default);
     Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken = default);
     Task<IEnumerable<TEntity>> FindAsync(
-        System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate,
+        Expression<Func<TEntity, bool>> predicate,
         CancellationToken cancellationToken = default);
     Task<TEntity?> FirstOrDefaultAsync(
-        System.Linq.Expressions.Expression<Func<TEntity, bool>> predicate,
+       Expression<Func<TEntity, bool>> predicate,
         CancellationToken cancellationToken = default);
 
     // Write operations
