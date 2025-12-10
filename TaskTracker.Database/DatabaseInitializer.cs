@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
 namespace TaskTracker.Database;
+
 public class DatabaseInitializer
 {
     private readonly IConfiguration _configuration;
@@ -28,18 +29,26 @@ public class DatabaseInitializer
             .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly())
             .LogToConsole()
             .Build();
-
-        // migration
-        var result = upgrader.PerformUpgrade();
-
-        if (!result.Successful)
+        if (upgrader.IsUpgradeRequired())
         {
-            _logger.LogError(result.Error, "Migration failed!");
-            
-            throw new Exception("Migration failed", result.Error);
-        }
+            _logger.LogInformation("Found new migrations. Starting upgrade...");
 
-        _logger.LogInformation("Database migration successful!");
+            // migration
+            var result = upgrader.PerformUpgrade();
+
+            if (!result.Successful)
+            {
+                _logger.LogError(result.Error, "Migration failed!");
+
+                throw new Exception("Migration failed", result.Error);
+            }
+
+            _logger.LogInformation("Database migration successful!");
+        }
+        else
+        {
+            _logger.LogInformation("Database is up to date. No migration needed.");
+        }
     }
 }
 
