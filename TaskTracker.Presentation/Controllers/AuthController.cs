@@ -22,7 +22,7 @@ public class AuthController : ControllerBase
 
     [HttpPost("login")]
     [AllowAnonymous]
-    public async Task<ActionResult<AuthResponseDto>> Login([FromBody] LoginDto request)
+    public async Task<ActionResult<AuthResponseDto>> LoginLoginAsync([FromBody] LoginDto request)
     {
         try
         {
@@ -42,7 +42,7 @@ public class AuthController : ControllerBase
 
     [HttpPost("register")]
     [AllowAnonymous]
-    public async Task<ActionResult<AuthResponseDto>> Register([FromBody] RegisterDto request)
+    public async Task<ActionResult<AuthResponseDto>> RegisterLoginAsync([FromBody] RegisterDto request)
     {
         try
         {

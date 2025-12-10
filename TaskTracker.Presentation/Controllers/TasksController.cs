@@ -1,9 +1,16 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TaskTracker.Application.Commands.Tasks;
-using TaskTracker.Application.Queries.Tasks;
 using TaskTracker.Domain.DTOs.Tasks;
+using TaskTracker.Application.Queries.Tasks.GetTaskById;
+using TaskTracker.Application.Queries.Tasks.GetTasksByList;
+using TaskTracker.Application.Queries.Tasks.GetTasksByUser;
+using TaskTracker.Application.Commands.Tasks.CreateTask;
+using TaskTracker.Application.Commands.Tasks.DeleteTask;
+using TaskTracker.Application.Commands.Tasks.UpdateTask;
+
+
+
 
 namespace TaskTracker.Presentation.Controllers;
 
@@ -19,11 +26,10 @@ public class TasksController : ControllerBase
         _mediator = mediator;
     }
 
+
   
-    /// Get task by ID with full details
-  
-    [HttpGet("{id}")]
-    public async Task<ActionResult<TaskDetailDto>> GetById(Guid id)
+    [HttpGet("{id}", Name = "GetTaskById")]
+    public async Task<ActionResult<TaskDetailDto>> GetByIdAsync(Guid id)
     {
         var query = new GetTaskByIdQuery { Id = id };
         var result = await _mediator.Send(query);
@@ -34,22 +40,18 @@ public class TasksController : ControllerBase
         return Ok(result);
     }
 
- 
-    /// Get tasks by list ID
   
     [HttpGet("list/{listId}")]
-    public async Task<ActionResult<IEnumerable<TaskDto>>> GetByListId(Guid listId)
+    public async Task<ActionResult<IEnumerable<TaskDto>>> GetByListIdAsync(Guid listId)
     {
         var query = new GetTasksByListQuery { ListId = listId };
         var result = await _mediator.Send(query);
         return Ok(result);
     }
 
-   
-    /// Get tasks assigned to current user
   
     [HttpGet("my")]
-    public async Task<ActionResult<IEnumerable<TaskDto>>> GetMyTasks()
+    public async Task<ActionResult<IEnumerable<TaskDto>>> GetMyTasksAsync()
     {
         var userId = GetCurrentUserId();
         var query = new GetTasksByUserQuery { UserId = userId };
@@ -58,10 +60,9 @@ public class TasksController : ControllerBase
     }
 
 
-    /// Get tasks by specific user ID
    
     [HttpGet("user/{userId}")]
-    public async Task<ActionResult<IEnumerable<TaskDto>>> GetByUserId(Guid userId)
+    public async Task<ActionResult<IEnumerable<TaskDto>>> GetByUserIdAsync(Guid userId)
     {
         var query = new GetTasksByUserQuery { UserId = userId };
         var result = await _mediator.Send(query);
@@ -69,41 +70,26 @@ public class TasksController : ControllerBase
     }
 
    
-    /// Create new task
    
     [HttpPost]
-    public async Task<ActionResult<TaskDto>> Create([FromBody] CreateTaskDto dto)
+    public async Task<ActionResult<TaskDto>> CreateAsync([FromBody] CreateTaskCommand command)
     {
-        var command = new CreateTaskCommand
         {
-            ListId = dto.ListId,
-            Title = dto.Title,
-            Description = dto.Description,
-            AssignedUserId = dto.AssignedUserId,
-            Priority = dto.Priority,
-            DueDate = dto.DueDate
-        };
+            command.UserId = GetCurrentUserId();
 
-        var result = await _mediator.Send(command);
-        return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+            var result = await _mediator.Send(command);
+           
+            return CreatedAtRoute("GetTaskById", new { id = result.Id }, result);
+        }
     }
 
   
-    /// Update task
   
     [HttpPut("{id}")]
-    public async Task<ActionResult<TaskDto>> Update(Guid id, [FromBody] UpdateTaskDto dto)
+    public async Task<ActionResult<TaskDto>> UpdateAsync(Guid id, [FromBody] UpdateTaskCommand command)
     {
-        var command = new UpdateTaskCommand
-        {
-            Id = id,
-            Title = dto.Title,
-            Description = dto.Description,
-            AssignedUserId = dto.AssignedUserId,
-            Priority = dto.Priority,
-            DueDate = dto.DueDate
-        };
-
+      
+        command.Id = id;
         try
         {
             var result = await _mediator.Send(command);
@@ -115,11 +101,9 @@ public class TasksController : ControllerBase
         }
     }
 
-  
-    /// Delete task (soft delete)
    
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(Guid id)
+    public async Task<IActionResult> DeleteAsync(Guid id)
     {
         var command = new DeleteTaskCommand { Id = id };
         var result = await _mediator.Send(command);

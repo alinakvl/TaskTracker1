@@ -1,9 +1,15 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TaskTracker.Application.Commands.Boards;
-using TaskTracker.Application.Queries.Boards;
 using TaskTracker.Domain.DTOs.Boards;
+using TaskTracker.Application.Commands.Boards.ArchiveBoard;
+using TaskTracker.Application.Commands.Boards.CreateBoard;
+using TaskTracker.Application.Commands.Boards.DeleteBoard;
+using TaskTracker.Application.Commands.Boards.UpdateBoard;
+using TaskTracker.Application.Queries.Boards.GetAllBoards;
+using TaskTracker.Application.Queries.Boards.GetArchivedBoards;
+using TaskTracker.Application.Queries.Boards.GetBoardById;
+using TaskTracker.Application.Queries.Boards.GetBoardsByUserId;
 
 namespace TaskTracker.Presentation.Controllers;
 
@@ -20,22 +26,18 @@ public class BoardsController : ControllerBase
     }
 
    
-    /// Get all boards
-   
     [HttpGet]
     [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<IEnumerable<BoardDto>>> GetAll()
+    public async Task<ActionResult<IEnumerable<BoardDto>>> GetAllAsync()
     {
         var query = new GetAllBoardsQuery();
         var result = await _mediator.Send(query);
         return Ok(result);
     }
 
-  
-    /// Get board by ID with full details
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<BoardDetailDto>> GetById(Guid id)
+    [HttpGet("{id}", Name = "GetBoardById")]
+    public async Task<ActionResult<BoardDetailDto>> GetByIdAsync(Guid id)
     {
         var query = new GetBoardByIdQuery { Id = id };
         var result = await _mediator.Send(query);
@@ -47,10 +49,8 @@ public class BoardsController : ControllerBase
     }
 
    
-    /// Get boards for current user
-  
     [HttpGet("my")]
-    public async Task<ActionResult<IEnumerable<BoardDto>>> GetMyBoards()
+    public async Task<ActionResult<IEnumerable<BoardDto>>> GetMyBoardsAsync()
     {
         var userId = GetCurrentUserId();
         var query = new GetBoardsByUserIdQuery { UserId = userId };
@@ -58,23 +58,18 @@ public class BoardsController : ControllerBase
         return Ok(result);
     }
 
- 
-    /// Get boards by specific user ID
 
     [HttpGet("user/{userId}")]
     [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<IEnumerable<BoardDto>>> GetByUserId(Guid userId)
+    public async Task<ActionResult<IEnumerable<BoardDto>>> GetByUserIdAsync(Guid userId)
     {
         var query = new GetBoardsByUserIdQuery { UserId = userId };
         var result = await _mediator.Send(query);
         return Ok(result);
     }
 
- 
-    /// Get archived boards
-   
     [HttpGet("archived")]
-    public async Task<ActionResult<IEnumerable<BoardDto>>> GetArchived()
+    public async Task<ActionResult<IEnumerable<BoardDto>>> GetArchivedAsync()
     {
         var query = new GetArchivedBoardsQuery();
         var result = await _mediator.Send(query);
@@ -82,36 +77,26 @@ public class BoardsController : ControllerBase
     }
 
    
-    /// Create new board
-   
     [HttpPost]
-    public async Task<ActionResult<BoardDto>> Create([FromBody] CreateBoardDto dto)
+    public async Task<ActionResult<BoardDto>> CreateAsync([FromBody] CreateBoardCommand command)
     {
-        var command = new CreateBoardCommand
-        {
-            Title = dto.Title,
-            Description = dto.Description,
-            BackgroundColor = dto.BackgroundColor
-        };
+       
+        command.UserId = GetCurrentUserId();
 
         var result = await _mediator.Send(command);
-        return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+        return CreatedAtRoute("GetBoardById", new { id = result.Id }, result);
+        
     }
 
-  
-    /// Update board
-   
-    [HttpPut("{id}")]
-    public async Task<ActionResult<BoardDto>> Update(Guid id, [FromBody] UpdateBoardDto dto)
-    {
-        var command = new UpdateBoardCommand
-        {
-            Id = id,
-            Title = dto.Title,
-            Description = dto.Description,
-            BackgroundColor = dto.BackgroundColor
-        };
 
+    [HttpPut("{id}")]
+    public async Task<ActionResult<BoardDto>> UpdateAsync(Guid id, [FromBody] UpdateBoardCommand command)
+    {
+
+        if (id != command.Id)
+            return BadRequest("ID mismatch");
+
+       
         try
         {
             var result = await _mediator.Send(command);
@@ -124,11 +109,9 @@ public class BoardsController : ControllerBase
     }
 
 
-    /// Delete board (soft delete)
-  
     [HttpDelete("{id}")]
     [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> Delete(Guid id)
+    public async Task<IActionResult> DeleteAsync(Guid id)
     {
         var command = new DeleteBoardCommand { Id = id };
         var result = await _mediator.Send(command);
@@ -140,10 +123,8 @@ public class BoardsController : ControllerBase
     }
 
    
-    /// Archive board
-   
     [HttpPatch("{id}/archive")]
-    public async Task<IActionResult> Archive(Guid id)
+    public async Task<IActionResult> ArchiveAsync(Guid id)
     {
         var command = new ArchiveBoardCommand { Id = id };
         var result = await _mediator.Send(command);
