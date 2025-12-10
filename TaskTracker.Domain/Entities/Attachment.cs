@@ -1,6 +1,4 @@
-﻿
-
-namespace TaskTracker.Domain.Entities;
+﻿namespace TaskTracker.Domain.Entities;
 
 public class Attachment
 {
@@ -13,6 +11,6 @@ public class Attachment
     public DateTime UploadedAt { get; set; }
     public bool IsDeleted { get; set; }
 
-    public Task Task { get; set; } = null!;
+    public Task? Task { get; set; } 
 }
 

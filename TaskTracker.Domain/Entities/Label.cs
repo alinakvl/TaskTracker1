@@ -8,7 +8,7 @@ public class Label
     public string Color { get; set; } = "#61BD4F";
     public DateTime CreatedAt { get; set; }
 
-    public Board Board { get; set; } = null!;
+    public Board? Board { get; set; } 
     public ICollection<TaskLabel> TaskLabels { get; set; } = new List<TaskLabel>();
 }
 

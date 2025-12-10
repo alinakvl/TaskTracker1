@@ -10,7 +10,8 @@ public class Board : BaseEntity
     public DateTime? ArchivedAt { get; set; }
 
     
-    public User Owner { get; set; } = null!;
+   
+    public User? Owner { get; set; }
     public ICollection<BoardMember> Members { get; set; } = new List<BoardMember>();
     public ICollection<TaskList> TaskLists { get; set; } = new List<TaskList>();
     public ICollection<Label> Labels { get; set; } = new List<Label>();

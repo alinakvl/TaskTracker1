@@ -1,4 +1,5 @@
 ﻿namespace TaskTracker.Domain.Entities;
+
 public class BoardMember
 {
     public Guid Id { get; set; }
@@ -8,6 +9,6 @@ public class BoardMember
     public DateTime JoinedAt { get; set; }
 
    
-    public Board Board { get; set; } = null!;
-    public User User { get; set; } = null!;
+    public Board? Board { get; set; }
+    public User? User { get; set; }
 }
