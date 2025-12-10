@@ -128,15 +128,7 @@ builder.Services.AddMediatR(cfg => {
 
 // AutoMapper
 
-//builder.Services.AddAutoMapper(typeof(MappingProfile));
-
-var mapperConfig = new MapperConfiguration(mc =>
-{
-    mc.AddProfile(new MappingProfile()); 
-});
-
-IMapper mapper = mapperConfig.CreateMapper();
-builder.Services.AddSingleton(mapper);
+builder.Services.AddAutoMapper(typeof(UserProfile).Assembly);
 
 // FluentValidation
 

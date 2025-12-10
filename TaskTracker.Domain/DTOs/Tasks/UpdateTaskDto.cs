@@ -1,4 +1,5 @@
 ﻿namespace TaskTracker.Domain.DTOs.Tasks;
+
 public class UpdateTaskDto
 {
     public string Title { get; set; } = string.Empty;

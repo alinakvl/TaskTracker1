@@ -1,4 +1,5 @@
 ﻿namespace TaskTracker.Domain.Enums;
+
 public enum TaskStatusEnum
 {
     Todo = 1,

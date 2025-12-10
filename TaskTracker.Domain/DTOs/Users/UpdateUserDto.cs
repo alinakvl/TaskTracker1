@@ -1,4 +1,5 @@
 ﻿namespace TaskTracker.Domain.DTOs.Users;
+
 public class UpdateUserDto
 {
     public string FirstName { get; set; } = string.Empty;

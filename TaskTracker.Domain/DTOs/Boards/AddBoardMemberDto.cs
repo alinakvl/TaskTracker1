@@ -1,4 +1,5 @@
 ﻿namespace TaskTracker.Domain.DTOs.Boards;
+
 public class AddBoardMemberDto
 {
     public Guid UserId { get; set; }

@@ -1,4 +1,5 @@
 ﻿namespace TaskTracker.Domain.DTOs.Labels;
+
 public class CreateLabelDto
 {
     public Guid BoardId { get; set; }

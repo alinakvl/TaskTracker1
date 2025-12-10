@@ -1,4 +1,5 @@
 ﻿namespace TaskTracker.Domain.DTOs.Comments;
+
 public class CommentDto
 {
     public Guid Id { get; set; }

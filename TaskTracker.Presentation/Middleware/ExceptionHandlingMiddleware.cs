@@ -3,6 +3,7 @@ using System.Text.Json;
 using FluentValidation;
 
 namespace TaskTracker.Presentation.Middleware;
+
 public class ExceptionHandlingMiddleware
 {
     private readonly RequestDelegate _next;

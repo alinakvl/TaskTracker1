@@ -1,4 +1,5 @@
 ﻿namespace TaskTracker.Domain.Constants;
+
 public static class TaskPriority
 {
     public const int Low = 1;

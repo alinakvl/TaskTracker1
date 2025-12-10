@@ -1,6 +1,8 @@
-﻿using TaskTracker.Domain.DTOs.Boards;
-using TaskTracker.Domain.DTOs.TaskLists;
+﻿using TaskTracker.Domain.DTOs.TaskLists;
 using TaskTracker.Domain.DTOs.Labels;
+
+namespace TaskTracker.Domain.DTOs.Boards;
+
 public class BoardDetailDto : BoardDto
 {
     public List<TaskListDto> TaskLists { get; set; } = new();
