@@ -25,7 +25,6 @@ public class TaskTrackerDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // User Configuration
         modelBuilder.Entity<User>(entity =>
         {
             entity.ToTable("Users");
@@ -42,7 +41,6 @@ public class TaskTrackerDbContext : DbContext
             entity.HasIndex(e => e.Email).IsUnique().HasFilter("IsDeleted = 0");
         });
 
-        // Board Configuration
         modelBuilder.Entity<Board>(entity =>
         {
             entity.ToTable("Boards");
@@ -63,7 +61,6 @@ public class TaskTrackerDbContext : DbContext
             entity.HasIndex(e => e.OwnerId).HasFilter("IsDeleted = 0");
         });
 
-        // BoardMember Configuration
         modelBuilder.Entity<BoardMember>(entity =>
         {
             entity.ToTable("BoardMembers");
@@ -84,7 +81,6 @@ public class TaskTrackerDbContext : DbContext
             entity.HasIndex(e => new { e.BoardId, e.UserId }).IsUnique();
         });
 
-        // TaskList Configuration
         modelBuilder.Entity<TaskList>(entity =>
         {
             entity.ToTable("TaskLists");
@@ -101,7 +97,6 @@ public class TaskTrackerDbContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade);
         });
 
-        // Task Configuration
         modelBuilder.Entity<Domain.Entities.Task>(entity =>
         {
             entity.ToTable("Tasks");
@@ -126,7 +121,6 @@ public class TaskTrackerDbContext : DbContext
             entity.HasIndex(e => new { e.ListId, e.Position }).HasFilter("IsDeleted = 0");
         });
 
-        // Label Configuration
         modelBuilder.Entity<Label>(entity =>
         {
             entity.ToTable("Labels");
@@ -141,7 +135,6 @@ public class TaskTrackerDbContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade);
         });
 
-        // TaskLabel Configuration (Many-to-Many)
         modelBuilder.Entity<TaskLabel>(entity =>
         {
             entity.ToTable("TaskLabels");
@@ -158,7 +151,6 @@ public class TaskTrackerDbContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict);
         });
 
-        // Comment Configuration
         modelBuilder.Entity<Comment>(entity =>
         {
             entity.ToTable("Comments");
@@ -179,7 +171,6 @@ public class TaskTrackerDbContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict);
         });
 
-        // Attachment Configuration
         modelBuilder.Entity<Attachment>(entity =>
         {
             entity.ToTable("Attachments");
@@ -196,7 +187,6 @@ public class TaskTrackerDbContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade);
         });
 
-        // Activity Configuration
         modelBuilder.Entity<Activity>(entity =>
         {
             entity.ToTable("Activities");

@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 
-
 namespace TaskTracker.Application.Commands.Boards.UpdateBoard;
 
 public class UpdateBoardValidator : AbstractValidator<UpdateBoardCommand>

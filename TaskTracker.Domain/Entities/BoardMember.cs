@@ -7,8 +7,6 @@ public class BoardMember
     public Guid UserId { get; set; }
     public int Role { get; set; } = 3; // 1-Owner, 2-Admin, 3-Member
     public DateTime JoinedAt { get; set; }
-
-   
     public Board? Board { get; set; }
     public User? User { get; set; }
 }

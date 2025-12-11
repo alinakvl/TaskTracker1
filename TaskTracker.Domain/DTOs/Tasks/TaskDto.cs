@@ -1,5 +1,6 @@
-﻿namespace TaskTracker.Domain.DTOs.Tasks;
-using TaskTracker.Domain.DTOs.Labels;
+﻿using TaskTracker.Domain.DTOs.Labels;
+
+namespace TaskTracker.Domain.DTOs.Tasks;
 
 public class TaskDto
 {

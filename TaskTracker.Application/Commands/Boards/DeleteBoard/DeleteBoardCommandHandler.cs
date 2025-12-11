@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using TaskTracker.Application.Interfaces.Repositories;
 
-
 namespace TaskTracker.Application.Commands.Boards.DeleteBoard;
 
 internal class DeleteBoardCommandHandler : IRequestHandler<DeleteBoardCommand, bool>

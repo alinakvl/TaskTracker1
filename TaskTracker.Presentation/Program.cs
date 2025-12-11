@@ -7,17 +7,11 @@ using TaskTracker.Presentation.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
 builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddInfrastructureServices(builder.Configuration);
-
-
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -66,15 +60,11 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-
-
 using (var scope = app.Services.CreateScope())
 {
     var initializer = scope.ServiceProvider.GetRequiredService<DatabaseInitializer>();
     initializer.Initialize();
 }
-
-
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 

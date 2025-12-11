@@ -13,6 +13,7 @@ public class Board : BaseEntity
    
     public User? Owner { get; set; }
     public ICollection<BoardMember> Members { get; set; } = new List<BoardMember>();
+
     public ICollection<TaskList> TaskLists { get; set; } = new List<TaskList>();
     public ICollection<Label> Labels { get; set; } = new List<Label>();
     public ICollection<Activity> Activities { get; set; } = new List<Activity>();

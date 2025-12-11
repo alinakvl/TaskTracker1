@@ -10,7 +10,6 @@ public class Attachment
     public string ContentType { get; set; } = string.Empty;
     public DateTime UploadedAt { get; set; }
     public bool IsDeleted { get; set; }
-
     public Task? Task { get; set; } 
 }
 

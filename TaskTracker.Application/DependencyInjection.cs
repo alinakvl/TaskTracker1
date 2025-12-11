@@ -1,10 +1,7 @@
 ﻿using FluentValidation;
-using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 using TaskTracker.Application.Behaviors;
 using TaskTracker.Application.Mappings;
-
 
 namespace TaskTracker.Application;
 

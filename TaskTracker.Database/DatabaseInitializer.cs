@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
+
 namespace TaskTracker.Database;
 
 public class DatabaseInitializer

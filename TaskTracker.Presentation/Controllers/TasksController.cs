@@ -9,9 +9,6 @@ using TaskTracker.Application.Commands.Tasks.CreateTask;
 using TaskTracker.Application.Commands.Tasks.DeleteTask;
 using TaskTracker.Application.Commands.Tasks.UpdateTask;
 
-
-
-
 namespace TaskTracker.Presentation.Controllers;
 
 [ApiController]
@@ -26,8 +23,6 @@ public class TasksController : ControllerBase
         _mediator = mediator;
     }
 
-
-  
     [HttpGet("{id}", Name = "GetTaskById")]
     public async Task<ActionResult<TaskDetailDto>> GetByIdAsync(Guid id)
     {
@@ -40,7 +35,6 @@ public class TasksController : ControllerBase
         return Ok(result);
     }
 
-  
     [HttpGet("list/{listId}")]
     public async Task<ActionResult<IEnumerable<TaskDto>>> GetByListIdAsync(Guid listId)
     {
@@ -49,7 +43,6 @@ public class TasksController : ControllerBase
         return Ok(result);
     }
 
-  
     [HttpGet("my")]
     public async Task<ActionResult<IEnumerable<TaskDto>>> GetMyTasksAsync()
     {
@@ -59,8 +52,6 @@ public class TasksController : ControllerBase
         return Ok(result);
     }
 
-
-   
     [HttpGet("user/{userId}")]
     public async Task<ActionResult<IEnumerable<TaskDto>>> GetByUserIdAsync(Guid userId)
     {
@@ -69,8 +60,6 @@ public class TasksController : ControllerBase
         return Ok(result);
     }
 
-   
-   
     [HttpPost]
     public async Task<ActionResult<TaskDto>> CreateAsync([FromBody] CreateTaskCommand command)
     {
@@ -83,8 +72,6 @@ public class TasksController : ControllerBase
         }
     }
 
-  
-  
     [HttpPut("{id}")]
     public async Task<ActionResult<TaskDto>> UpdateAsync(Guid id, [FromBody] UpdateTaskCommand command)
     {
@@ -101,7 +88,6 @@ public class TasksController : ControllerBase
         }
     }
 
-   
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync(Guid id)
     {

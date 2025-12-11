@@ -35,7 +35,6 @@ public class BoardsController : ControllerBase
         return Ok(result);
     }
 
-
     [HttpGet("{id}", Name = "GetBoardById")]
     public async Task<ActionResult<BoardDetailDto>> GetByIdAsync(Guid id)
     {
@@ -48,7 +47,6 @@ public class BoardsController : ControllerBase
         return Ok(result);
     }
 
-   
     [HttpGet("my")]
     public async Task<ActionResult<IEnumerable<BoardDto>>> GetMyBoardsAsync()
     {
@@ -57,7 +55,6 @@ public class BoardsController : ControllerBase
         var result = await _mediator.Send(query);
         return Ok(result);
     }
-
 
     [HttpGet("user/{userId}")]
     [Authorize(Roles = "Admin")]
@@ -76,7 +73,6 @@ public class BoardsController : ControllerBase
         return Ok(result);
     }
 
-   
     [HttpPost]
     public async Task<ActionResult<BoardDto>> CreateAsync([FromBody] CreateBoardCommand command)
     {
@@ -87,7 +83,6 @@ public class BoardsController : ControllerBase
         return CreatedAtRoute("GetBoardById", new { id = result.Id }, result);
         
     }
-
 
     [HttpPut("{id}")]
     public async Task<ActionResult<BoardDto>> UpdateAsync(Guid id, [FromBody] UpdateBoardCommand command)
@@ -108,7 +103,6 @@ public class BoardsController : ControllerBase
         }
     }
 
-
     [HttpDelete("{id}")]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteAsync(Guid id)
@@ -122,7 +116,6 @@ public class BoardsController : ControllerBase
         return NoContent();
     }
 
-   
     [HttpPatch("{id}/archive")]
     public async Task<IActionResult> ArchiveAsync(Guid id)
     {

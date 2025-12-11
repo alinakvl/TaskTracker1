@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TaskTracker.Application.Interfaces.Services;
 using TaskTracker.Domain.DTOs.Auth;
-using TaskTracker.Infrastructure.Options;
-using Microsoft.Extensions.Options;
 using TaskTracker.Application.Commands.Auth.Login;
 using TaskTracker.Application.Commands.Auth.Register;
 using MediatR;

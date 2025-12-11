@@ -9,7 +9,6 @@ public class Task : BaseEntity
     public int Position { get; set; }
     public DateTime? DueDate { get; set; }
     public int Priority { get; set; } = 2;
-
     public TaskList? List { get; set; } 
     public User? AssignedUser { get; set; }
     public ICollection<Comment> Comments { get; set; } = new List<Comment>();

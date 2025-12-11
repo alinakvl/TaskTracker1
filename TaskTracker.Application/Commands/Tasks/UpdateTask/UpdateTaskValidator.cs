@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 
-
 namespace TaskTracker.Application.Commands.Tasks.UpdateTask;
 
 public class UpdateTaskValidator : AbstractValidator<UpdateTaskCommand>

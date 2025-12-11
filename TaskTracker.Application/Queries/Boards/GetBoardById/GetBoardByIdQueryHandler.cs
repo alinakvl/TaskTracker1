@@ -4,6 +4,7 @@ using TaskTracker.Application.Interfaces.Repositories;
 using TaskTracker.Domain.DTOs.Boards;
 
 namespace TaskTracker.Application.Queries.Boards.GetBoardById;
+
 internal class GetBoardByIdQueryHandler : IRequestHandler<GetBoardByIdQuery, BoardDetailDto?>
 {
     private readonly IUnitOfWork _unitOfWork;

@@ -13,7 +13,6 @@ public class Activity
     public string? IPAddress { get; set; }
     public string? UserAgent { get; set; }
     public DateTime CreatedAt { get; set; }
-
     public User? User { get; set; } 
     public Board? Board { get; set; }
 }

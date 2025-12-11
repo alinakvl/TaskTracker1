@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 
-
 namespace TaskTracker.Application.Commands.Tasks.CreateTask;
 
 public class CreateTaskValidator : AbstractValidator<CreateTaskCommand>

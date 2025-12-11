@@ -3,7 +3,6 @@ using Task = System.Threading.Tasks.Task;
 
 namespace TaskTracker.Application.Interfaces.Repositories;
 
-
 public interface IUnitOfWork : IDisposable
 {
     //specific repo

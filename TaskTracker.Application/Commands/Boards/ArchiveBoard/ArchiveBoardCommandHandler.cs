@@ -1,9 +1,7 @@
 ﻿using MediatR;
 using TaskTracker.Application.Interfaces.Repositories;
 
-
 namespace TaskTracker.Application.Commands.Boards.ArchiveBoard;
-
 
 internal class ArchiveBoardCommandHandler : IRequestHandler<ArchiveBoardCommand, bool>
 {

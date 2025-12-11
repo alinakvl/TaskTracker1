@@ -4,8 +4,6 @@ using TaskTracker.Application.Interfaces.Repositories;
 using TaskTracker.Domain.DTOs.Boards;
 using TaskTracker.Domain.Entities;
 
-
-
 namespace TaskTracker.Application.Commands.Boards.CreateBoard;
 
 internal class CreateBoardCommandHandler : IRequestHandler<CreateBoardCommand, BoardDto>
@@ -13,7 +11,6 @@ internal class CreateBoardCommandHandler : IRequestHandler<CreateBoardCommand, B
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
   
-
      public CreateBoardCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
