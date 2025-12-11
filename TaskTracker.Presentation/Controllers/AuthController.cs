@@ -4,6 +4,9 @@ using TaskTracker.Application.Interfaces.Services;
 using TaskTracker.Domain.DTOs.Auth;
 using TaskTracker.Infrastructure.Options;
 using Microsoft.Extensions.Options;
+using TaskTracker.Application.Commands.Auth.Login;
+using TaskTracker.Application.Commands.Auth.Register;
+using MediatR;
 
 namespace TaskTracker.Presentation.Controllers;
 
@@ -11,55 +14,88 @@ namespace TaskTracker.Presentation.Controllers;
 [Route("api/[controller]")]
 public class AuthController : ControllerBase
 {
-    private readonly IAuthService _authService;
-    private readonly JwtOptions _jwtOptions;
+    private readonly IMediator _mediator;
+    //private readonly IAuthService _authService;
+    //private readonly JwtOptions _jwtOptions;
 
-    public AuthController(IAuthService authService, IOptions<JwtOptions> jwtOptions)
+    //public AuthController(IAuthService authService, IOptions<JwtOptions> jwtOptions)
+    //{
+    //    _authService = authService;
+    //    _jwtOptions = jwtOptions.Value;
+    //}
+    public AuthController(IMediator mediator)
     {
-        _authService = authService;
-        _jwtOptions = jwtOptions.Value;
+        _mediator = mediator;
     }
 
+    //[HttpPost("login")]
+    //[AllowAnonymous]
+    //public async Task<ActionResult<AuthResponseDto>> LoginAsync([FromBody] LoginDto request)
+    //{
+    //    try
+    //    {
+    //        var token = await _authService.LoginAsync(request.Email, request.Password);
+
+    //        return Ok(new AuthResponseDto
+    //        {
+    //            Token = token,
+    //            ExpiresAt = DateTime.UtcNow.AddMinutes(_jwtOptions.ExpirationMinutes)
+    //        });
+    //    }
+    //    catch (UnauthorizedAccessException ex)
+    //    {
+    //        return Unauthorized(new { message = ex.Message });
+    //    }
+    //}
     [HttpPost("login")]
     [AllowAnonymous]
-    public async Task<ActionResult<AuthResponseDto>> LoginAsync([FromBody] LoginDto request)
+    public async Task<ActionResult<AuthResponseDto>> LoginAsync([FromBody] LoginCommand command)
     {
         try
         {
-            var token = await _authService.LoginAsync(request.Email, request.Password);
-
-            return Ok(new AuthResponseDto
-            {
-                Token = token,
-                ExpiresAt = DateTime.UtcNow.AddMinutes(_jwtOptions.ExpirationMinutes)
-            });
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
         catch (UnauthorizedAccessException ex)
         {
             return Unauthorized(new { message = ex.Message });
         }
     }
+    //[HttpPost("register")]
+    //[AllowAnonymous]
+    //public async Task<ActionResult<AuthResponseDto>> RegisterAsync([FromBody] RegisterDto request)
+    //{
+    //    try
+    //    {
+    //        var token = await _authService.RegisterAsync(
+    //            request.Email,
+    //            request.Password,
+    //            request.FirstName,
+    //            request.LastName);
 
+    //        return Ok(new AuthResponseDto
+    //        {
+    //            Token = token,
+    //            ExpiresAt = DateTime.UtcNow.AddMinutes(_jwtOptions.ExpirationMinutes)
+    //        });
+    //    }
+    //    catch (InvalidOperationException ex)
+    //    {
+    //        return BadRequest(new { message = ex.Message });
+    //    }
+    //}
     [HttpPost("register")]
     [AllowAnonymous]
-    public async Task<ActionResult<AuthResponseDto>> RegisterAsync([FromBody] RegisterDto request)
+    public async Task<ActionResult<AuthResponseDto>> RegisterAsync([FromBody] RegisterUserCommand command)
     {
         try
         {
-            var token = await _authService.RegisterAsync(
-                request.Email,
-                request.Password,
-                request.FirstName,
-                request.LastName);
-
-            return Ok(new AuthResponseDto
-            {
-                Token = token,
-                ExpiresAt = DateTime.UtcNow.AddMinutes(_jwtOptions.ExpirationMinutes)
-            });
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
         catch (InvalidOperationException ex)
         {
+           
             return BadRequest(new { message = ex.Message });
         }
     }

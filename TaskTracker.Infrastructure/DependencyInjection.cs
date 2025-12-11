@@ -18,8 +18,9 @@ public static class DependencyInjection
 
         var jwtSettings = configuration.GetSection(JwtOptions.Section).Get<JwtOptions>();
 
-        
-        services.AddScoped<IAuthService, JwtTokenService>();
+
+        services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+        services.AddScoped<IPasswordHasher, PasswordHasher>();
         services.AddHttpContextAccessor();
 
        
