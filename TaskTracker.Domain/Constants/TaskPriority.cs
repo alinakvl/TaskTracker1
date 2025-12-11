@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TaskTracker.Domain.Constants;
+﻿namespace TaskTracker.Domain.Constants;
 
 public static class TaskPriority
 {
-    public const string Low = "Low";
-    public const string Medium = "Medium";
-    public const string High = "High";
-    public const string Critical = "Critical";
+    public const int Low = 1;
+    public const int Medium = 2;
+    public const int High = 3;
+    public const int Critical = 4;
+    public static string GetPriorityName(int priority) => priority switch
+    {
+        Low => "Low",
+        Medium => "Medium",
+        High => "High",
+        Critical => "Critical",
+        _ => "Unknown"
+    };
 }

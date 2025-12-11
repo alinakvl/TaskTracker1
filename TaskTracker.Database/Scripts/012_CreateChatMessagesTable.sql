@@ -1,0 +1,10 @@
+﻿CREATE TABLE ChatMessages (
+    Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    SessionId UNIQUEIDENTIFIER NOT NULL,
+    IsUserMessage BIT NOT NULL, -- 1=користувач, 0=AI
+    Content NVARCHAR(MAX) NOT NULL,
+    Timestamp DATETIME2 NOT NULL DEFAULT GETUTCDATE(),
+    
+    CONSTRAINT FK_ChatMessages_Session FOREIGN KEY (SessionId) 
+        REFERENCES ChatSessions(Id) ON DELETE CASCADE
+);

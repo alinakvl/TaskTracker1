@@ -1,0 +1,9 @@
+﻿namespace TaskTracker.Domain.Entities;
+
+public class TaskLabel
+{
+    public Guid TaskId { get; set; }
+    public Guid LabelId { get; set; }
+    public Task? Task { get; set; } 
+    public Label? Label { get; set; } 
+}

@@ -1,21 +1,55 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Scripts\001_CreateUsersTable.sql" />
+    <None Remove="Scripts\002_CreateBoardsTable.sql" />
+    <None Remove="Scripts\003_CreateBoardMembersTable.sql" />
+    <None Remove="Scripts\004_CreateTaskListsTable.sql" />
+    <None Remove="Scripts\005_CreateTasksTable.sql" />
+    <None Remove="Scripts\006_CreateLabelsTable.sql" />
+    <None Remove="Scripts\007_CreateTaskLabelsTable.sql" />
+    <None Remove="Scripts\008_CreateCommentsTable.sql" />
+    <None Remove="Scripts\009_CreateAttachmentsTable.sql" />
+    <None Remove="Scripts\010_CreateSubscriptionsTable.sql" />
+    <None Remove="Scripts\011_CreateChatSessionsTable.sql" />
+    <None Remove="Scripts\012_CreateChatMessagesTable.sql" />
+    <None Remove="Scripts\013_Create CallSessionsTable.sql" />
+    <None Remove="Scripts\014_CreateChecklistsTable.sql" />
+    <None Remove="Scripts\015_CreateChecklistItemsTable.sql" />
+    <None Remove="Scripts\016_CreateActivitiesTable.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\001_CreateUsersTable.sql" />
+    <EmbeddedResource Include="Scripts\002_CreateBoardsTable.sql" />
+    <EmbeddedResource Include="Scripts\003_CreateBoardMembersTable.sql" />
+    <EmbeddedResource Include="Scripts\004_CreateTaskListsTable.sql" />
+    <EmbeddedResource Include="Scripts\005_CreateTasksTable.sql" />
+    <EmbeddedResource Include="Scripts\006_CreateLabelsTable.sql" />
+    <EmbeddedResource Include="Scripts\007_CreateTaskLabelsTable.sql" />
+    <EmbeddedResource Include="Scripts\008_CreateCommentsTable.sql" />
+    <EmbeddedResource Include="Scripts\009_CreateAttachmentsTable.sql" />
+    <EmbeddedResource Include="Scripts\010_CreateSubscriptionsTable.sql" />
+    <EmbeddedResource Include="Scripts\011_CreateChatSessionsTable.sql" />
+    <EmbeddedResource Include="Scripts\012_CreateChatMessagesTable.sql" />
+    <EmbeddedResource Include="Scripts\013_Create CallSessionsTable.sql" />
+    <EmbeddedResource Include="Scripts\014_CreateChecklistsTable.sql" />
+    <EmbeddedResource Include="Scripts\015_CreateChecklistItemsTable.sql" />
+    <EmbeddedResource Include="Scripts\016_CreateActivitiesTable.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="dbup" Version="5.0.37" />
     <PackageReference Include="dbup-sqlserver" Version="5.0.39" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Scripts\" />
   </ItemGroup>
 
 </Project>
