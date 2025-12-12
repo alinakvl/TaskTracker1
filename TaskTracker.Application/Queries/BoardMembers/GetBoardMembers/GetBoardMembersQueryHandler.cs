@@ -4,6 +4,7 @@ using TaskTracker.Application.Interfaces.Repositories;
 using TaskTracker.Domain.DTOs.Boards;
 
 namespace TaskTracker.Application.Queries.BoardMembers.GetBoardMembers;
+
 internal class GetBoardMembersQueryHandler : IRequestHandler<GetBoardMembersQuery, IEnumerable<BoardMemberDto>>
 {
     private readonly IUnitOfWork _unitOfWork;

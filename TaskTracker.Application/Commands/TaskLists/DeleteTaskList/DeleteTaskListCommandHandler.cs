@@ -3,7 +3,7 @@ using TaskTracker.Application.Interfaces.Repositories;
 
 namespace TaskTracker.Application.Commands.TaskLists.DeleteTaskList;
 
-public class DeleteTaskListCommandHandler : IRequestHandler<DeleteTaskListCommand, bool>
+internal class DeleteTaskListCommandHandler : IRequestHandler<DeleteTaskListCommand, bool>
 {
     private readonly IUnitOfWork _unitOfWork;
 

@@ -5,7 +5,7 @@ using TaskTracker.Domain.DTOs.Users;
 
 namespace TaskTracker.Application.Queries.Users.GetUserById;
 
-public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserDto?>
+internal class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserDto?>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;

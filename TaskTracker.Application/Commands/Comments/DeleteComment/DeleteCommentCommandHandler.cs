@@ -2,7 +2,8 @@
 using TaskTracker.Application.Interfaces.Repositories;
 
 namespace TaskTracker.Application.Commands.Comments.DeleteComment;
-public class DeleteCommentCommandHandler : IRequestHandler<DeleteCommentCommand, bool>
+
+internal class DeleteCommentCommandHandler : IRequestHandler<DeleteCommentCommand, bool>
 {
     private readonly IUnitOfWork _unitOfWork;
 

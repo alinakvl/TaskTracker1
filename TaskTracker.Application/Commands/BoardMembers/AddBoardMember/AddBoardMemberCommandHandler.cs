@@ -5,6 +5,7 @@ using TaskTracker.Domain.DTOs.Boards;
 using TaskTracker.Domain.Entities;
 
 namespace TaskTracker.Application.Commands.BoardMembers.AddBoardMember;
+
  internal class AddBoardMemberCommandHandler : IRequestHandler<AddBoardMemberCommand, BoardMemberDto>
 {
     private readonly IUnitOfWork _unitOfWork;

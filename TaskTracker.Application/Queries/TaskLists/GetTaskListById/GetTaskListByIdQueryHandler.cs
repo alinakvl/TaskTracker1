@@ -4,7 +4,8 @@ using TaskTracker.Application.Interfaces.Repositories;
 using TaskTracker.Domain.DTOs.TaskLists;
 
 namespace TaskTracker.Application.Queries.TaskLists.GetTaskListById;
-public class GetTaskListByIdQueryHandler : IRequestHandler<GetTaskListByIdQuery, TaskListDto?>
+
+internal class GetTaskListByIdQueryHandler : IRequestHandler<GetTaskListByIdQuery, TaskListDto?>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;

@@ -4,7 +4,8 @@ using TaskTracker.Application.Interfaces.Repositories;
 using TaskTracker.Domain.DTOs.Comments;
 
 namespace TaskTracker.Application.Queries.Comments.GetCommentsByTask;
-public class GetCommentsByTaskQueryHandler : IRequestHandler<GetCommentsByTaskQuery, IEnumerable<CommentDto>>
+
+internal class GetCommentsByTaskQueryHandler : IRequestHandler<GetCommentsByTaskQuery, IEnumerable<CommentDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;

@@ -3,7 +3,7 @@ using TaskTracker.Application.Interfaces.Repositories;
 
 namespace TaskTracker.Application.Commands.Users.DeleteUser;
 
-public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, bool>
+internal class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, bool>
 {
     private readonly IUnitOfWork _unitOfWork;
 

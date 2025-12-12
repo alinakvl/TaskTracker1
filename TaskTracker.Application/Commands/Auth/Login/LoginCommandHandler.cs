@@ -5,7 +5,7 @@ using TaskTracker.Domain.DTOs.Auth;
 
 namespace TaskTracker.Application.Commands.Auth.Login;
 
-public class LoginCommandHandler : IRequestHandler<LoginCommand, AuthResponseDto>
+internal class LoginCommandHandler : IRequestHandler<LoginCommand, AuthResponseDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IPasswordHasher _passwordHasher;

@@ -6,7 +6,7 @@ using TaskTracker.Domain.Entities;
 
 namespace TaskTracker.Application.Commands.Comments.CreateComment;
 
-public class CreateCommentCommandHandler : IRequestHandler<CreateCommentCommand, CommentDto>
+internal class CreateCommentCommandHandler : IRequestHandler<CreateCommentCommand, CommentDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;

@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 
 namespace TaskTracker.Application.Commands.BoardMembers.AddBoardMember;
+
 public class AddBoardMemberCommandValidator : AbstractValidator<AddBoardMemberCommand>
 {
     public AddBoardMemberCommandValidator()

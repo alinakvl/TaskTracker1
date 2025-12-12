@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 
-
 namespace TaskTracker.Application.Commands.Comments.UpdateComment;
+
 public class UpdateCommentCommandValidator : AbstractValidator<UpdateCommentCommand>
 {
     public UpdateCommentCommandValidator()

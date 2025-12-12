@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 
 namespace TaskTracker.Application.Commands.TaskLists.CreateTaskList;
+
 public class CreateTaskListCommandValidator : AbstractValidator<CreateTaskListCommand>
 {
     public CreateTaskListCommandValidator()

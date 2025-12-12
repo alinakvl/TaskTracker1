@@ -6,7 +6,7 @@ using TaskTracker.Domain.Entities;
 
 namespace TaskTracker.Application.Commands.TaskLists.CreateTaskList;
 
-public class CreateTaskListCommandHandler : IRequestHandler<CreateTaskListCommand, TaskListDto>
+internal class CreateTaskListCommandHandler : IRequestHandler<CreateTaskListCommand, TaskListDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;

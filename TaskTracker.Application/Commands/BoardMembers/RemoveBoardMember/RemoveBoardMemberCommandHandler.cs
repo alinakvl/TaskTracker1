@@ -2,6 +2,7 @@
 using TaskTracker.Application.Interfaces.Repositories;
 
 namespace TaskTracker.Application.Commands.BoardMembers.RemoveBoardMember;
+
 internal class RemoveBoardMemberCommandHandler : IRequestHandler<RemoveBoardMemberCommand, bool>
 {
     private readonly IUnitOfWork _unitOfWork;

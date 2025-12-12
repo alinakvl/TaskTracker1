@@ -5,7 +5,7 @@ using TaskTracker.Domain.DTOs.TaskLists;
 
 namespace TaskTracker.Application.Queries.TaskLists.GetTaskListsByBoard;
 
-public class GetTaskListsByBoardQueryHandler : IRequestHandler<GetTaskListsByBoardQuery, IEnumerable<TaskListDto>>
+internal class GetTaskListsByBoardQueryHandler : IRequestHandler<GetTaskListsByBoardQuery, IEnumerable<TaskListDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;

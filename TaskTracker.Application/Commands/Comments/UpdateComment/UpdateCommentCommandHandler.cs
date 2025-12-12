@@ -4,7 +4,8 @@ using TaskTracker.Application.Interfaces.Repositories;
 using TaskTracker.Domain.DTOs.Comments;
 
 namespace TaskTracker.Application.Commands.Comments.UpdateComment;
-public class UpdateCommentCommandHandler : IRequestHandler<UpdateCommentCommand, CommentDto>
+
+internal class UpdateCommentCommandHandler : IRequestHandler<UpdateCommentCommand, CommentDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;

@@ -2,6 +2,7 @@
 using TaskTracker.Application.Interfaces.Repositories;
 
 namespace TaskTracker.Application.Commands.BoardMembers.UpdateBoardMemberRole;
+
 internal class UpdateBoardMemberRoleCommandHandler : IRequestHandler<UpdateBoardMemberRoleCommand, bool>
 {
     private readonly IUnitOfWork _unitOfWork;
