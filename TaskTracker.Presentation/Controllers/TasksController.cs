@@ -61,22 +61,36 @@ public class TasksController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<TaskDto>> CreateAsync([FromBody] CreateTaskCommand command)
+    public async Task<ActionResult<TaskDto>> CreateAsync([FromBody] CreateTaskDto dto)
     {
+        var command = new CreateTaskCommand
         {
-            command.UserId = GetCurrentUserId();
+            ListId = dto.ListId,
+            Title = dto.Title,
+            Description = dto.Description,
+            AssignedUserId = dto.AssignedUserId,
+            Priority = dto.Priority,
+            DueDate = dto.DueDate
+        };
 
-            var result = await _mediator.Send(command);
-           
-            return CreatedAtRoute("GetTaskById", new { id = result.Id }, result);
-        }
+        var result = await _mediator.Send(command);
+        //return CreatedAtAction(nameof(GetByIdAsync), new { id = result.Id }, result);
+        return CreatedAtRoute("GetTaskById", new { id = result.Id }, result);
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<TaskDto>> UpdateAsync(Guid id, [FromBody] UpdateTaskCommand command)
+    public async Task<ActionResult<TaskDto>> UpdateAsync(Guid id, [FromBody] UpdateTaskDto dto)
     {
-      
-        command.Id = id;
+        var command = new UpdateTaskCommand
+        {
+            Id = id,
+            Title = dto.Title,
+            Description = dto.Description,
+            AssignedUserId = dto.AssignedUserId,
+            Priority = dto.Priority,
+            DueDate = dto.DueDate
+        };
+
         try
         {
             var result = await _mediator.Send(command);

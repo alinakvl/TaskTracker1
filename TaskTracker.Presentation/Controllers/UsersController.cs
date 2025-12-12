@@ -57,15 +57,23 @@ public class UsersController : ControllerBase
         return Ok(result);
     }
 
+ 
     [HttpPut("{id}")]
-    public async Task<ActionResult<UserDto>> UpdateAsync(Guid id, [FromBody] UpdateUserCommand command)
+    public async Task<ActionResult<UserDto>> UpdateAsync(Guid id, [FromBody] UpdateUserDto dto)
     {
-       
         var currentUserId = GetCurrentUserId();
+
         if (id != currentUserId && !User.IsInRole("Admin"))
             return Forbid();
 
-        command.Id = id;
+      
+        var command = new UpdateUserCommand
+        {
+            Id = id,                   
+            FirstName = dto.FirstName, 
+            LastName = dto.LastName,
+            AvatarUrl = dto.AvatarUrl
+        };
 
         try
         {
@@ -77,7 +85,6 @@ public class UsersController : ControllerBase
             return NotFound(new { message = ex.Message });
         }
     }
-
     [HttpDelete("{id}")]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteAsync(Guid id)

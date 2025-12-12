@@ -74,24 +74,33 @@ public class BoardsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<BoardDto>> CreateAsync([FromBody] CreateBoardCommand command)
+    public async Task<ActionResult<BoardDto>> CreateAsync([FromBody] CreateBoardDto dto)
     {
-       
-        command.UserId = GetCurrentUserId();
+        var command = new CreateBoardCommand
+        {
+            UserId = GetCurrentUserId(),
+            Title = dto.Title,
+            Description = dto.Description,
+            BackgroundColor = dto.BackgroundColor
+        };
 
         var result = await _mediator.Send(command);
+        //return CreatedAtAction(nameof(GetByIdAsync), new { id = result.Id }, result);
         return CreatedAtRoute("GetBoardById", new { id = result.Id }, result);
-        
     }
 
+   
     [HttpPut("{id}")]
-    public async Task<ActionResult<BoardDto>> UpdateAsync(Guid id, [FromBody] UpdateBoardCommand command)
+    public async Task<ActionResult<BoardDto>> UpdateAsync(Guid id, [FromBody] UpdateBoardDto dto)
     {
+        var command = new UpdateBoardCommand
+        {
+            Id = id,
+            Title = dto.Title,
+            Description = dto.Description,
+            BackgroundColor = dto.BackgroundColor
+        };
 
-        if (id != command.Id)
-            return BadRequest("ID mismatch");
-
-       
         try
         {
             var result = await _mediator.Send(command);
