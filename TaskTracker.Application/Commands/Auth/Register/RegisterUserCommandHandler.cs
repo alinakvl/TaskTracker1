@@ -6,7 +6,7 @@ using TaskTracker.Domain.Entities;
 
 namespace TaskTracker.Application.Commands.Auth.Register;
 
-public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, AuthResponseDto>
+internal class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, AuthResponseDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IPasswordHasher _passwordHasher;

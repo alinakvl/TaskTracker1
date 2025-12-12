@@ -5,7 +5,7 @@ using TaskTracker.Domain.DTOs.Users;
 
 namespace TaskTracker.Application.Queries.Users.GetUserByEmail;
 
-public class GetUserByEmailQueryHandler : IRequestHandler<GetUserByEmailQuery, UserDto?>
+internal class GetUserByEmailQueryHandler : IRequestHandler<GetUserByEmailQuery, UserDto?>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;

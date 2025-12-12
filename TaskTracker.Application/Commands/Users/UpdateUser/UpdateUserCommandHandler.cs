@@ -5,7 +5,7 @@ using TaskTracker.Domain.DTOs.Users;
 
 namespace TaskTracker.Application.Commands.Users.UpdateUser;
 
-public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, UserDto>
+internal class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, UserDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
