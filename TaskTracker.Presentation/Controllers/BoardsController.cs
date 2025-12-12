@@ -85,7 +85,6 @@ public class BoardsController : ControllerBase
         };
 
         var result = await _mediator.Send(command);
-        //return CreatedAtAction(nameof(GetByIdAsync), new { id = result.Id }, result);
         return CreatedAtRoute("GetBoardById", new { id = result.Id }, result);
     }
 

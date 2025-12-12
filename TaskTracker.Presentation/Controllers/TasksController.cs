@@ -74,7 +74,6 @@ public class TasksController : ControllerBase
         };
 
         var result = await _mediator.Send(command);
-        //return CreatedAtAction(nameof(GetByIdAsync), new { id = result.Id }, result);
         return CreatedAtRoute("GetTaskById", new { id = result.Id }, result);
     }
 

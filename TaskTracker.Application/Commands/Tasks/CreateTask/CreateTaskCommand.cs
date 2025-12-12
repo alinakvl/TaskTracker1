@@ -12,6 +12,6 @@ public class CreateTaskCommand : IRequest<TaskDto>
     public Guid? AssignedUserId { get; set; }
     public int Priority { get; set; } = 2;
     public DateTime? DueDate { get; set; }
-    //public Guid UserId { get; set; }
+    
 }
 
