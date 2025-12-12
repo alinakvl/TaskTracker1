@@ -20,8 +20,14 @@ public class AuthController : ControllerBase
 
     [HttpPost("login")]
     [AllowAnonymous]
-    public async Task<ActionResult<AuthResponseDto>> LoginAsync([FromBody] LoginCommand command)
+    public async Task<ActionResult<AuthResponseDto>> LoginAsync([FromBody] LoginDto request)
     {
+        var command = new LoginCommand
+        {
+            Email = request.Email,
+            Password = request.Password
+        };
+
         try
         {
             var result = await _mediator.Send(command);
@@ -32,11 +38,20 @@ public class AuthController : ControllerBase
             return Unauthorized(new { message = ex.Message });
         }
     }
-   
+
     [HttpPost("register")]
     [AllowAnonymous]
-    public async Task<ActionResult<AuthResponseDto>> RegisterAsync([FromBody] RegisterUserCommand command)
+ 
+    public async Task<ActionResult<AuthResponseDto>> RegisterAsync([FromBody] RegisterDto request)
     {
+        var command = new RegisterUserCommand
+        {
+            Email = request.Email,
+            Password = request.Password,
+            FirstName = request.FirstName,
+            LastName = request.LastName
+        };
+
         try
         {
             var result = await _mediator.Send(command);
@@ -44,7 +59,6 @@ public class AuthController : ControllerBase
         }
         catch (InvalidOperationException ex)
         {
-           
             return BadRequest(new { message = ex.Message });
         }
     }
