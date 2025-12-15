@@ -3,6 +3,7 @@ using TaskTracker.Domain.Entities;
 using TaskTracker.Application.Interfaces.Repositories;
 
 namespace TaskTracker.Application.Commands.Activities.LogActivity;
+
 internal class LogActivityCommandHandler : IRequestHandler<LogActivityCommand, Guid>
 {
     private readonly IUnitOfWork _unitOfWork;

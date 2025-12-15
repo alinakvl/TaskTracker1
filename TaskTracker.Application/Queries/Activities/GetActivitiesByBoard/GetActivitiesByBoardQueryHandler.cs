@@ -3,6 +3,7 @@ using TaskTracker.Domain.Entities;
 using TaskTracker.Application.Interfaces.Repositories;
 
 namespace TaskTracker.Application.Queries.Activities.GetActivitiesByBoard;
+
 internal class GetActivitiesByBoardQueryHandler : IRequestHandler<GetActivitiesByBoardQuery, IEnumerable<Activity>>
 {
     private readonly IUnitOfWork _unitOfWork;
