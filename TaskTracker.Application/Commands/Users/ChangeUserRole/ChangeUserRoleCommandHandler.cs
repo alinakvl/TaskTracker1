@@ -3,7 +3,7 @@ using TaskTracker.Application.Interfaces.Repositories;
 
 namespace TaskTracker.Application.Commands.Users.ChangeUserRole;
 
-public class ChangeUserRoleCommandHandler : IRequestHandler<ChangeUserRoleCommand, bool>
+internal class ChangeUserRoleCommandHandler : IRequestHandler<ChangeUserRoleCommand, bool>
 {
     private readonly IUnitOfWork _unitOfWork;
 
