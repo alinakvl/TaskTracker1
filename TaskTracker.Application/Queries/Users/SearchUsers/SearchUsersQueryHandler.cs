@@ -5,7 +5,7 @@ using TaskTracker.Domain.DTOs.Users;
 
 namespace TaskTracker.Application.Queries.Users.SearchUsers;
 
-public class SearchUsersQueryHandler : IRequestHandler<SearchUsersQuery, IEnumerable<UserDto>>
+internal class SearchUsersQueryHandler : IRequestHandler<SearchUsersQuery, IEnumerable<UserDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
