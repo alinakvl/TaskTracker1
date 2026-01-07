@@ -8,6 +8,7 @@ using TaskTracker.Application.Queries.Users.GetAllUsers;
 using TaskTracker.Application.Queries.Users.GetUserByEmail;
 using TaskTracker.Application.Queries.Users.GetUserById;
 using TaskTracker.Domain.DTOs.Users;
+using TaskTracker.Application.Queries.Users.SearchUsers;
 
 namespace TaskTracker.Presentation.Controllers;
 
@@ -86,7 +87,8 @@ public class UsersController : ControllerBase
         }
     }
     [HttpDelete("{id}")]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
+    [Authorize]
     public async Task<IActionResult> DeleteAsync(Guid id)
     {
         var command = new DeleteUserCommand { Id = id };
@@ -113,17 +115,27 @@ public class UsersController : ControllerBase
     }
 
     [HttpPatch("{userId}/role")]
-    [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> ChangeRoleAsync(Guid userId, [FromBody] string role)
+    [Authorize]
+    public async Task<IActionResult> ChangeRoleAsync(Guid userId, [FromBody] ChangeRoleDto request)
     {
        
-        var command = new ChangeUserRoleCommand { UserId = userId, Role = role };
+        var command = new ChangeUserRoleCommand { UserId = userId, Role = request.Role };
+
         var result = await _mediator.Send(command);
 
         if (!result)
             return NotFound(new { message = $"User with ID {userId} not found" });
 
         return NoContent();
+    }
+    [HttpGet("search")] 
+    public async Task<ActionResult<IEnumerable<UserDto>>> SearchUsers([FromQuery] string term)
+    {
+        var query = new SearchUsersQuery { Term = term };
+
+        var result = await _mediator.Send(query);
+
+        return Ok(result);
     }
 
     private Guid GetCurrentUserId()
