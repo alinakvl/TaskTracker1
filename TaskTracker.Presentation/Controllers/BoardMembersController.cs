@@ -76,14 +76,15 @@ public class BoardMembersController : ControllerBase
         try
         {
             var result = await _mediator.Send(command);
-            if (!result) return NotFound(new { message = "Member not found" });
+
+            return result
+                ? NoContent()
+                : NotFound(new { message = "Member not found" });
         }
         catch (UnauthorizedAccessException ex)
         {
             return StatusCode(403, new { message = ex.Message });
         }
-
-        return NoContent();
     }
 
     [HttpPatch("{userId}/role")]
