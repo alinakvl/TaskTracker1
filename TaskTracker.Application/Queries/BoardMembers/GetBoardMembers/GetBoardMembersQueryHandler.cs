@@ -18,8 +18,8 @@ internal class GetBoardMembersQueryHandler : IRequestHandler<GetBoardMembersQuer
 
     public async Task<IEnumerable<BoardMemberDto>> Handle(GetBoardMembersQuery request, CancellationToken cancellationToken)
     {
-        var members = await _unitOfWork.BoardMembers.FindAsync(
-            bm => bm.BoardId == request.BoardId,
+        var members = await _unitOfWork.BoardMembers.GetMembersWithUsersByBoardIdAsync( 
+            request.BoardId,
             cancellationToken);
 
         return _mapper.Map<IEnumerable<BoardMemberDto>>(members);

@@ -16,7 +16,7 @@ public class UnitOfWork : IUnitOfWork
     private IRepository<Comment, Guid>? _comments;
     private IRepository<Attachment, Guid>? _attachments;
     private IRepository<Label, Guid>? _labels;
-    private IRepository<BoardMember, Guid>? _boardMembers;
+    private IBoardMemberRepository? _boardMembers;
     private IRepository<Activity, Guid>? _activities;
 
     public UnitOfWork(TaskTrackerDbContext context)
@@ -45,8 +45,8 @@ public class UnitOfWork : IUnitOfWork
     public IRepository<Label, Guid> Labels =>
         _labels ??= new Repository<Label, Guid>(_context);
 
-    public IRepository<BoardMember, Guid> BoardMembers =>
-        _boardMembers ??= new Repository<BoardMember, Guid>(_context);
+    public IBoardMemberRepository BoardMembers =>  
+        _boardMembers ??= new BoardMemberRepository(_context); 
 
     public IRepository<Activity, Guid> Activities =>
         _activities ??= new Repository<Activity, Guid>(_context);
