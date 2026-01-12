@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using TaskTracker.Application.Commands.BoardMembers.AddBoardMember;
 using TaskTracker.Application.Commands.BoardMembers.RemoveBoardMember;
 using TaskTracker.Application.Commands.BoardMembers.UpdateBoardMemberRole;
@@ -54,22 +55,36 @@ public class BoardMembersController : ControllerBase
             return BadRequest(new { message = ex.Message });
         }
     }
-
+   
     [HttpDelete("{userId}")]
+    [Authorize]
     public async Task<IActionResult> RemoveMemberAsync(Guid boardId, Guid userId)
     {
+        var currentUserIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (!Guid.TryParse(currentUserIdString, out var currentUserId))
+        {
+            return Unauthorized();
+        }
+
         var command = new RemoveBoardMemberCommand
         {
             BoardId = boardId,
-            UserId = userId
+            TargetUserId = userId,
+            CurrentUserId = currentUserId
         };
 
-        var result = await _mediator.Send(command);
+        try
+        {
+            var result = await _mediator.Send(command);
 
-        if (!result)
-            return NotFound(new { message = "Board member not found" });
-
-        return NoContent();
+            return result
+                ? NoContent()
+                : NotFound(new { message = "Member not found" });
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            return StatusCode(403, new { message = ex.Message });
+        }
     }
 
     [HttpPatch("{userId}/role")]

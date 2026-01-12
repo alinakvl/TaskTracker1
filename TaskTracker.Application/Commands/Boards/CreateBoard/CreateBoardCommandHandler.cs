@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using TaskTracker.Application.Interfaces.Repositories;
+using TaskTracker.Domain.Constants;
 using TaskTracker.Domain.DTOs.Boards;
 using TaskTracker.Domain.Entities;
 
@@ -20,8 +21,6 @@ internal class CreateBoardCommandHandler : IRequestHandler<CreateBoardCommand, B
 
     public async Task<BoardDto> Handle(CreateBoardCommand request, CancellationToken cancellationToken)
     {
-       
-
         var board = new Board
         {
             Id = Guid.NewGuid(),
@@ -34,6 +33,17 @@ internal class CreateBoardCommandHandler : IRequestHandler<CreateBoardCommand, B
         };
 
         await _unitOfWork.Boards.AddAsync(board, cancellationToken);
+
+        var ownerMember = new BoardMember
+        {
+            Id = Guid.NewGuid(),
+            BoardId = board.Id,      
+            UserId = request.UserId,  
+            Role = BoardMemberRoles.Owner, 
+        };
+
+        await _unitOfWork.BoardMembers.AddAsync(ownerMember, cancellationToken);
+     
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return _mapper.Map<BoardDto>(board);
